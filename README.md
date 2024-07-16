@@ -17,7 +17,14 @@
 ### Docker Setup
 
 1. Start the application and the database using Docker Compose:
-   docker-compose up
+
+#### Build the Docker Image
+
+1. docker build -t shipbubble .
+
+#### Start service
+
+1. docker-compose up
 
 ### Manual Setup
 
