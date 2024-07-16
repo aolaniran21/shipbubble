@@ -17,8 +17,8 @@ app.get("/", (req: Request, res: Response) => {
 app.use('/users', userRoutes);
 app.use('/tickets', ticketRoutes);
 
-// sequelize.sync().then(() => {
-//     // console.log('Database connected');
-// });
+sequelize.sync().then(() => {
+    // console.log('Database connected');
+});
 
 export default app;
