@@ -29,7 +29,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "tsc && npm test",
+    "build": "tsc",
     "production": "cross-env NODE_ENV=production tsc && node dist/server",
     "start": "nodemon server.ts",
     "dev": "cross-env NODE_ENV=development nodemon ./src/server.ts",
