@@ -18,31 +18,35 @@
 
 1. Edit `docker-compose.yml` file
 
-```version: '3.8'
+```
+version: '3.8'
 
 services:
-db:
-image: mysql:8.0
-environment:
-MYSQL_ROOT_PASSWORD: root_password # Change this to your root database password
+    db:
+        image: mysql:8.0
+        environment:
+            MYSQL_ROOT_PASSWORD: root_password # Change this to your root database password
+            MYSQL_DATABASE: shipbubble
 
-      MYSQL_DATABASE: shipbubble
+        ports:
+            - "3307:3306"
+        volumes:
+            - db_data:/var/lib/mysql
 
-    ports:
-      - "3307:3306"
+    app:
+        build: .
+        environment:
+            - DB_HOST=db
+            - DB_USER: root
+            - DB_PASSWORD: root_password # Change this to your root database password
+            - JWT_SECRET=your_jwt_secret
+        ports:
+            - "3000:3000"
+        depends_on:
+            - db
+
     volumes:
-      - db_data:/var/lib/mysql
-
-app:
-build: .
-environment: - DB_HOST=db - DB_USER=root
-DB_USER: root
- DB_PASSWORD: root_password # Change this to your root database password - JWT_SECRET=your_jwt_secret
-ports: - "3000:3000"
-depends_on: - db
-
-volumes:
-db_data:
+        db_data:
 ```
 
 #### Build the Docker Image
